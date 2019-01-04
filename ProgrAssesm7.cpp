@@ -6,6 +6,9 @@ int main(int argc, char const *argv[])
     int a,b;
     cin >>a>>b;
     int minimal_num;
+    if(a == 0 || b == 0){
+        return 0;
+    }
     if (a >= b){
         minimal_num = b;
     }else{
