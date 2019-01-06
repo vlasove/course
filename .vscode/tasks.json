@@ -7,10 +7,11 @@
             "label": "echo",
             "type": "shell",
             "command": "g++",
-            "args": ["-g", "W2ProgrAssesm6.cpp"], "group": {
+            "args": ["-g", "ProgrAssesm11.cpp"], "group": {
                 "kind": "build",
                 "isDefault": true
             }
+            
         }
     ]
 }
