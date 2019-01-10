@@ -7,7 +7,7 @@
             "label": "echo",
             "type": "shell",
             "command": "g++",
-            "args": ["-g", "ProgrAssesm19.cpp"], "group": {
+            "args": ["-g", "W3P5.cpp"], "group": {
                 "kind": "build",
                 "isDefault": true
             }
