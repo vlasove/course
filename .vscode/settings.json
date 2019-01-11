@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "algorithm": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp",
+        "deque": "cpp",
+        "iostream": "cpp",
+        "system_error": "cpp",
+        "xlocale": "cpp",
+        "typeinfo": "cpp",
+        "xutility": "cpp",
+        "string": "cpp"
+    }
+}
