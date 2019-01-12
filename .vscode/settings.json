@@ -9,6 +9,11 @@
         "xlocale": "cpp",
         "typeinfo": "cpp",
         "xutility": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "xtr1common": "cpp",
+        "istream": "cpp",
+        "optional": "cpp",
+        "ostream": "cpp",
+        "type_traits": "cpp"
     }
 }

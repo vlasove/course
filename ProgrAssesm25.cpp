@@ -42,7 +42,7 @@ public:
     
     // если и имя, и фамилия неизвестны
     if (first_name.empty() && last_name.empty()) {
-      return "Incognito";
+      return "No person";
     
     // если неизвестно только имя
     } else if (first_name.empty()) {
