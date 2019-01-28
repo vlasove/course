@@ -19,5 +19,6 @@ bool operator<(const Date& lhs, const Date& rhs){
 int main(){
 
     cout << (Date{2019, "May", 2} < Date{2029,"June", 2})<<endl;
+    cour<<"Mega Lol"<<endl;
     return 0;
 }
