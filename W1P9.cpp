@@ -30,8 +30,13 @@ class Cities{
 int main(){
 
     Cities cities;
+    bool success;
+    string message;
+    tie(success, message) = cities.FindCountry("Moscow");
     auto t = cities.FindCountry("Moscow");
     cout << get<0>(t)<< get<1>(t)<<endl;
+
+    cout <<success << " in "<< message<<endl;
 
 
     return 0;
