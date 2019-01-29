@@ -39,6 +39,9 @@ int maxAt(vector<int64_t>& vector_name) {
 
 int FindMaxRepetitionCount(const vector<Region>& regions){
     vector<int64_t> repeats;
+    if (regions.size() == 0){
+        return 0;
+    }
 
     for(int64_t i =0; i < static_cast<int64_t>(regions.size()); i++){
         int64_t temp = 0;
