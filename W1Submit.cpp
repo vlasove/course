@@ -9,7 +9,7 @@ bool operator==(const Region& lhs, const Region& rhs){
 
 
 int maxAt(vector<int>& vector_name) {
-    int max = INT_MIN;
+    int max = -10000;
     for (auto val : vector_name) {
          if (max < val) max = val;
     }
