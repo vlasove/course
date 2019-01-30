@@ -7,7 +7,7 @@
             "label": "echo",
             "type": "shell",
             "command": "g++",
-            "args": ["-g", "ProgrAssesm3_y.cpp"], "group": {
+            "args": ["-g", "TaskManager.cpp"], "group": {
                 "kind": "build",
                 "isDefault": true
             }
