@@ -33,7 +33,29 @@ public:
   // Обновить статусы по данному количеству задач конкретного разработчика,
   // подробности см. ниже
   tuple<TasksInfo, TasksInfo> PerformPersonTasks(
-      const string& person, int task_count);
+      const string& person, int task_count){
+
+          TasksInfo updated, untouched;
+
+
+         //if (persons[person][TaskStatus::NEW] +persons[person][TaskStatus::IN_PROGRESS] + persons[person][TaskStatus::TESTING] > task_count ){
+         //     task_count = persons[person][TaskStatus::NEW] +persons[person][TaskStatus::IN_PROGRESS] + persons[person][TaskStatus::TESTING] ;
+         // }
+
+         if(persons.count(person) == 0){
+             return tie(updated, untouched);
+         }else{
+             untouched = persons[person];
+         }
+
+        untouched.erase(TaskStatus::DONE);
+
+
+        return tie(updated, untouched);
+
+          
+
+      }
 
 private:
     map<string, TasksInfo> persons;
@@ -58,6 +80,23 @@ int main(){
     PrintTasksInfo(tasks.GetPersonTasksInfo("Ilia"));
     cout << "Ivan's tasks: ";
     PrintTasksInfo(tasks.GetPersonTasksInfo("Ivan"));
+
+    TasksInfo updated_tasks, untouched_tasks;
+  
+    tie(updated_tasks, untouched_tasks) =
+        tasks.PerformPersonTasks("Ivan", 2);
+    cout << "Updated Ivan's tasks: ";
+    PrintTasksInfo(updated_tasks);
+    cout << "Untouched Ivan's tasks: ";
+    PrintTasksInfo(untouched_tasks);
+    
+    tie(updated_tasks, untouched_tasks) =
+        tasks.PerformPersonTasks("Ivan", 2);
+    cout << "Updated Ivan's tasks: ";
+    PrintTasksInfo(updated_tasks);
+    cout << "Untouched Ivan's tasks: ";
+    PrintTasksInfo(untouched_tasks);
+
 
     return 0;
 }
