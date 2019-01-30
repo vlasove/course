@@ -19,10 +19,16 @@ using TasksInfo = map<TaskStatus, int>;
 class TeamTasks {
 public:
   // Получить статистику по статусам задач конкретного разработчика
-  const TasksInfo& GetPersonTasksInfo(const string& person) const;
+  const TasksInfo& GetPersonTasksInfo(const string& person){
+      return persons[person];
+  }
   
   // Добавить новую задачу (в статусе NEW) для конкретного разработчитка
-  void AddNewTask(const string& person);
+  void AddNewTask(const string& person){
+
+      ++persons[person][TaskStatus::NEW];
+
+  }
   
   // Обновить статусы по данному количеству задач конкретного разработчика,
   // подробности см. ниже
@@ -43,6 +49,15 @@ void PrintTasksInfo(TasksInfo tasks_info) {
 }
 
 int main(){
+    TeamTasks tasks;
+    tasks.AddNewTask("Ilia");
+    for (int i = 0; i < 3; ++i) {
+        tasks.AddNewTask("Ivan");
+    }
+    cout << "Ilia's tasks: ";
+    PrintTasksInfo(tasks.GetPersonTasksInfo("Ilia"));
+    cout << "Ivan's tasks: ";
+    PrintTasksInfo(tasks.GetPersonTasksInfo("Ivan"));
 
     return 0;
 }
