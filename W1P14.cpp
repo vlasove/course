@@ -16,7 +16,7 @@ T Max(const T& a, const T& b){
 
 
 int main(){
-    cout<<Max(2,3)<<endl;
+    cout<<Max<double>(2,3)<<endl;
 
     return 0;
 }
