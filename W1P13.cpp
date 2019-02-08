@@ -24,7 +24,7 @@ string Join(const Collection& c, char d){
 
 template <typename First, typename Second>
 ostream& operator<<(ostream& out, const pair<First, Second>& p ){
-    out<<p.first<<','<<p.second;
+    out<<'('<<p.first<<':'<<p.second<<')';
     return out;
 
 }
@@ -33,17 +33,14 @@ ostream& operator<<(ostream& out, const pair<First, Second>& p ){
 template <typename T>
 ostream& operator<<(ostream& out, const vector<T>& v){
 
-    return out<<Join(v, ',');
+    return out<<'['<<Join(v, ',')<<']';
 }
 
 
 template <typename Key, typename Value>
 ostream& operator<<(ostream& out, const map<Key, Value>& m){
-    for (const auto i : m){
-        out << i<<' ';
-    }
-    return out;
 
+    return out <<'{'<< Join(m, ',')<<'}';
 }
 
 
@@ -55,6 +52,9 @@ int main(){
 
     map<int, int> m = {{1,2}, {3,4}};
     cout << m<< endl;
+
+    vector<vector<int>> ve = {{1,23,3}, {4,57,7}, {12,44,33}};
+    cout<< ve << endl;
 
 
 
