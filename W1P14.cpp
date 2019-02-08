@@ -3,6 +3,7 @@
 #include <map>
 #include <utility>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ T Max(const T& a, const T& b){
 
 
 int main(){
-    cout<<Max<double>(2,3)<<endl;
+    cout<<max<double>(2,3.1)<<endl;
 
     return 0;
 }
