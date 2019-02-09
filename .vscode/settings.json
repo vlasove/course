@@ -15,6 +15,7 @@
         "optional": "cpp",
         "ostream": "cpp",
         "type_traits": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "map": "cpp"
     }
 }
