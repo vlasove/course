@@ -21,46 +21,42 @@ struct Query {
 };
 
 istream& operator >> (istream& is, Query& q) {
-  string typeRequest;
-  is >> typeRequest;
-  map<string, QueryType> wrap = {
-    {"NEW_BUS", QueryType::NewBus},
-    {"BUSES_FOR_STOP", QueryType::BusesForStop},
-    {"STOPS_FOR_BUS", QueryType::StopsForBus},
-    {"ALL_BUSES", QueryType::AllBuses}
-  };
-
-  q.type = wrap[typeRequest];
-  is.ignore(1);
-  switch(q.type){
-    case QueryType::NewBus:
-
-      is>>q.bus;
-      //q.bus = bus_name;
-      is.ignore(1);
-      int n;
-      is>>n;
-      for(int i =0; i < n; ++i){
-        is.ignore(1);
-        string stop;
-        is >>stop;
-        //q.stop = stop_name;
-        q.stops.push_back(stop);
-      }
-
-      case QueryType::BusesForStop:
-        is>>q.stop;
-        break;
-
-      case QueryType::StopsForBus:
-        is>>q.bus;
-        break;
-
-      case QueryType::AllBuses:
-        break;
-  };
-  // Реализуйте эту функцию
-  return is;
+    string type;
+    is >> type;
+    map <string, QueryType> m =
+    {
+        {"NEW_BUS", QueryType::NewBus},
+        {"BUSES_FOR_STOP", QueryType::BusesForStop},
+        {"STOPS_FOR_BUS", QueryType::StopsForBus},
+        {"ALL_BUSES", QueryType::AllBuses},
+    };
+    
+    q.type = m[type];
+    is.ignore(1);
+    switch (q.type) {
+        case QueryType::NewBus:
+            is >> q.bus;
+            is.ignore(1);
+            int n;
+            is >> n;
+            q.stops.clear();
+            for (int i = 0; i < n; ++i) {
+                is.ignore(1);
+                //string stop;
+                is >> q.stop;
+                q.stops.push_back(q.stop);
+            }
+            break;
+        case QueryType::StopsForBus:
+            is >> q.bus;
+            break;
+        case QueryType::BusesForStop:
+            is >> q.stop;
+            break;
+        case QueryType::AllBuses:
+            break;
+    }
+    return is;
 }
 
 struct BusesForStopResponse {
@@ -90,6 +86,7 @@ ostream& operator << (ostream& os, const StopsForBusResponse& r) {
   if(r.bus4stop.size() == 0){
     os<<"No bus";
   }else{
+    int i =1;
     for(const string& stop : r.stops){
       os<<"Stop "<<stop<<":";
       if(r.bus4stop.count(stop) == 0){
@@ -99,6 +96,10 @@ ostream& operator << (ostream& os, const StopsForBusResponse& r) {
           os<<" "<<bus;
         }
       }
+      if(i < r.stops.size()){
+          os<<endl;
+      }
+      ++i;
     }
   }
  
@@ -115,12 +116,17 @@ ostream& operator << (ostream& os, const AllBusesResponse& r) {
   if(r.stop4bus.size() == 0){
     os<<"No buses";
   }else{
+    int i = 1;
     for(const auto& item : r.stop4bus){
       os<<"Bus "<<item.first<<":";
       for(const string& stop : item.second){
         os<<" "<<stop;
       }
-      os<<endl;
+      if( i < r.stop4bus.size()){
+          os<<endl;
+      }
+      ++i;
+      
     }
   }
   // Реализуйте эту функцию
@@ -154,8 +160,7 @@ public:
         result.stops.push_back(stop);
         for(auto& bus_n: GetBusesForStop(stop).buses){
           if(bus_n != bus){
-            cout<<"WOW"<<endl;
-            result.bus4stop[stop].push_back(bus);
+            result.bus4stop[stop].push_back(bus_n);
           }
 
         }
