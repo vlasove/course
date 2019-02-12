@@ -56,6 +56,15 @@ ostream& operator<< (ostream& os, const map<K,V>& m){
     return os<<"}";
 }
 
+
+
+
+
+
+
+
+
+
 template<class T, class U>
 void AssertEqual(const T& t, const U& u, const string& hint){
     if(t != u){
@@ -96,7 +105,7 @@ void TestAddSynonyms(){
         };
         assert(synonyms == expected);
     }
-    cout<<"AddSynonymsTest is OK!"<<endl;
+    
 }
 
 void TestCount(){
@@ -115,7 +124,7 @@ void TestCount(){
         AssertEqual(GetSynonymsCount(synonyms, "d"), 0u, "c");
     }
 
-    cout<<"GetSynonymsCountTest is OK!"<<endl; 
+    
 }
 
 void TestSynonymsCheck(){
@@ -125,23 +134,39 @@ void TestSynonymsCheck(){
         Assert(!SynonymsCheck(synonyms, "b","a"), "kek");
     }
 
-    cout<<"SynonymsCheckTest is OK!"<<endl;
+    
 }
 
-template<class TestFunc>
-void RunTest(TestFunc func, const string& test_name){
-    try{
-        func();
-    } catch(runtime_error& r){
-        cout<<test_name<<" Failed: "<<r.what()<<endl;
+class TestRunner{
+public:
+    template<class TestFunc>
+    void RunTest(TestFunc func, const string& test_name){
+        try{
+            func();
+            cerr<<test_name<<" OK!"<<endl;
+        } catch(runtime_error& r){
+            ++fail_count;
+            cerr<<test_name<<" Failed: "<<r.what()<<endl;
+        }
+
     }
+    ~TestRunner(){
+        if(fail_count >0){
+            cerr<<fail_count<<" tests failed. Terminate";
+            exit(1);
+        }
+    }
+private:
+int fail_count = 0;
+};
 
-}
+
 
 void TestAll(){
-    RunTest(TestCount, "TestCount");
-    RunTest(TestSynonymsCheck, "TestSynonymsCheck");
-    RunTest(TestAddSynonyms, "TestAddSynonyms");
+    TestRunner tr;
+    tr.RunTest(TestCount, "TestCount");
+    tr.RunTest(TestSynonymsCheck, "TestSynonymsCheck");
+    tr.RunTest(TestAddSynonyms, "TestAddSynonyms");
 
 }
 
