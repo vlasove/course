@@ -1,16 +1,9 @@
 #include <iostream>
-#include <map>
-#include <set>
-#include <string>
-#include <sstream>
 #include <exception>
-
-using namespace std;
-#include "test_runner.h"
 #include "body.h"
 #include "tests.h"
 
-
+using namespace std;
 
 int main()
 {

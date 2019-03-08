@@ -1,3 +1,12 @@
+#pragma once
+
+#include <iostream>
+#include <map>
+#include <set>
+#include <string>
+#include <sstream>
+using namespace std;
+
 #ifndef TEST_RUNNER
 #define TEST_RUNNER
 

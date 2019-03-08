@@ -1,4 +1,6 @@
+#pragma once
 
+#include "test_runner.h"
 //Testing functions:
 void TestAddSynonyms()
 {

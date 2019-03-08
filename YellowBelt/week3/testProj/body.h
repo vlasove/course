@@ -1,3 +1,11 @@
+#pragma once
+
+#include <map>
+#include <set>
+#include <string>
+
+using namespace std;
+
 using Synonyms = map<string, set<string>>;
 
 //Synonyms functions block:
