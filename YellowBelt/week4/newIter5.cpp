@@ -21,21 +21,25 @@ int main()
     vector<string> langs = {
         "Python",
         "C#",
+        "C#",
+        "C#",
         "Java",
         "C",
         "C++"};
     PrintRange(langs.begin(), langs.end());
 
-    auto it = remove_if(langs.begin(), langs.end(), 
-                [](const string& lang){
-                    return lang[0] == 'C';
-                });
+    sort(langs.begin(), langs.end());
+    PrintRange(langs.begin(), langs.end());
+    sort(langs.rbegin(), langs.rend());
+    PrintRange(langs.begin(), langs.end());
 
+
+    auto it = find_if(langs.rbegin(), langs.rend(),
+                    [](const string& lang){
+                        return lang[0] == 'C';
+                    });
     cout << *it<<endl;
 
-    langs.erase(it, langs.end());
-
-    PrintRange(langs.begin(), langs.end());
 
     return 0;
 }

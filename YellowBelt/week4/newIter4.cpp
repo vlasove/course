@@ -18,23 +18,20 @@ void PrintRange(It range_begin,
 
 int main()
 {
-    vector<string> langs = {
+    set<string> langs = {
         "Python",
+        "C#",
+        "C#",
         "C#",
         "Java",
         "C",
         "C++"};
     PrintRange(langs.begin(), langs.end());
 
-    auto it = remove_if(langs.begin(), langs.end(), 
-                [](const string& lang){
-                    return lang[0] == 'C';
-                });
-
-    cout << *it<<endl;
-
-    langs.erase(it, langs.end());
-
+    cout << all_of(langs.begin(), langs.end(),
+                   [](const string &lang) {
+                       return lang[0] >= 'A' && lang[0] <= 'Z';
+                   });
     PrintRange(langs.begin(), langs.end());
 
     return 0;

@@ -21,21 +21,32 @@ int main()
     vector<string> langs = {
         "Python",
         "C#",
+        "C#",
+        "C#",
         "Java",
         "C",
         "C++"};
     PrintRange(langs.begin(), langs.end());
 
-    auto it = remove_if(langs.begin(), langs.end(), 
-                [](const string& lang){
-                    return lang[0] == 'C';
-                });
+    cout<<"Min finder: "<<endl;
+    auto min = min_element(langs.begin(), langs.end());
+    cout<<*min<<endl;
 
-    cout << *it<<endl;
+    cout<<"Max finder: "<<endl;
+    auto max = max_element(langs.begin(), langs.end());
+    cout<<*max<<endl;
 
-    langs.erase(it, langs.end());
+    auto p = minmax_element(langs.begin(), langs.end());
+    cout<<"Min is : "<< *p.first <<" and Max is :"<<*p.second<<endl;
+
+
+    auto it = unique(langs.begin(), langs.end());
 
     PrintRange(langs.begin(), langs.end());
+    langs.erase(it, langs.end());
+    PrintRange(langs.begin(), langs.end());
+
+
 
     return 0;
 }

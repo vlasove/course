@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <set>
 #include <vector>
 
@@ -21,21 +22,20 @@ int main()
     vector<string> langs = {
         "Python",
         "C#",
+        "C#",
+        "C#",
         "Java",
         "C",
         "C++"};
     PrintRange(langs.begin(), langs.end());
 
-    auto it = remove_if(langs.begin(), langs.end(), 
-                [](const string& lang){
-                    return lang[0] == 'C';
-                });
+    set<int> a = {1, 8, 3};
+    set<int> b = {3, 6, 8};
 
-    cout << *it<<endl;
+    set<int> c;
 
-    langs.erase(it, langs.end());
-
-    PrintRange(langs.begin(), langs.end());
+    set_intersection(a.begin(), a.end(), b.begin(), b.end(), inserter(c, c.end()));
+    PrintRange(c.begin(), c.end());
 
     return 0;
 }
