@@ -4,8 +4,8 @@ from instapy import InstaPy
 from instapy import smart_run
 
 # get an InstaPy session!
-session = InstaPy(username="vlasov.evgeny",
-                  password="3004990q")
+session = InstaPy(username="####",
+                  password="#####")
 
 with smart_run(session):
     """ Activity flow """
